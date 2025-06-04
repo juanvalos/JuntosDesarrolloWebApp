@@ -1,0 +1,318 @@
+/* Fondo general y dimensiones completas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+  background-color: #FBFBF9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #FBFBF9;
+}
+
+/* Encabezado */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-radius: 8px 8px 0 0;
+}
+
+.title-subtitle{
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #28BDB1;
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #d1d5db;
+  margin: 0;
+}
+
+/* Barra de selección */
+.profile-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  align-self: flex-end;       /* Empuja hacia la derecha */
+  margin-right: 2rem;         /* Margen de separación del borde derecho */
+}
+
+.profile-select {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #FFFFFF;
+  font-size: 1rem;
+  flex: 1;
+  max-width: 300px;
+  color: #7b8c9d;
+}
+
+/* Botones */
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: #1dcdbc;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #19b2a7;
+}
+
+.btn-outline {
+  background-color: #f4f4f4;
+  border: none;
+}
+
+.btn-outline:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  margin-top: 0.8rem;
+  background-color: #f4f4f4;
+  border: none;
+  text-align: left;
+}
+
+.btn-block:hover {
+  background-color: #e0e0e0;
+}
+
+/* Grid de tarjetas */
+.card-2 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px)); /* Tamaño fijo más pequeño */
+  width: 100%;
+  justify-content: center; /* Centrar las tarjetas */
+  align-content: start; /* Alinear al inicio verticalmente */
+  flex-direction: row;.card-2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.large-card {
+  background: #FFFFFF;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 300px;
+  max-width: 800px; /* 2 cards de 300px + margen */
+  margin: 0 auto;
+}
+
+  display: flex;
+}
+
+/* Tarjetas */
+.card {
+  background: #FFFFFF;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 450px;
+  height: 320px;
+}
+
+.card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #111827;
+  font-size: 1.2rem;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.card ul li {
+  margin-bottom: 0.4rem;
+  color: #374151;
+  font-size: 1.15rem; /* Aumenta el tamaño de la letra */
+}
+
+.card ul li strong {
+  font-size: 1.1rem; /* Opcional: resalta el texto en negrita */
+}
+
+.card-2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Tarjeta grande inferior */
+.large-card {
+  background: #FFFFFF;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+/* Entradas de formulario para hitos */
+.input, .textarea-input {
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  background: #f8fafc;
+  color: #374151;
+  transition: border 0.2s;
+}
+
+.select-input{
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  background: #f8fafc;
+  color: #374151;
+  transition: border 0.2s;
+}
+
+.input:focus, .select-input:focus, .textarea-input:focus {
+  border: 1.5px solid #28BDB1;
+  outline: none;
+  background: #fff;
+}
+
+.select-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #f8fafc url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 8L0.803847 0.5L11.1962 0.5L6 8Z' fill='%2328BDB1'/%3E%3C/svg%3E%0A") no-repeat right 0.8rem center/1rem 0.7rem;
+}
+
+.textarea-input {
+  min-height: 60px;
+  resize: vertical;
+}
+
+/* Mensajes de error y éxito */
+.modal-error {
+  color: #e74c3c;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-success {
+  color: #28BDB1;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.select-input-small {
+  max-width: 180px;
+  font-size: 0.97rem;
+  padding: 0.4rem 0.7rem;
+}
+
+.input-small {
+  max-width: 140px;
+  font-size: 0.97rem;
+  padding: 0.4rem 0.7rem;
+}
+
+.nav-btn {
+  background: none;
+  color: #28BDB1;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.nav-btn-active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+  
+  .profile-bar {
+    flex-direction: column;
+  }
+  
+  .profile-select {
+    max-width: 100%;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: stretch;
+  }
+  
+  .card {
+    max-width: 100%;
+    height: auto;
+    min-height: 150px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+}

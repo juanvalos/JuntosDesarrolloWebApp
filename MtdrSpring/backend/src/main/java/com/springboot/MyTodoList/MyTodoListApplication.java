@@ -2,7 +2,6 @@ package com.springboot.MyTodoList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,24 +13,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import com.springboot.MyTodoList.controller.ToDoItemBotController;
-import com.springboot.MyTodoList.service.AuthService;
-import com.springboot.MyTodoList.service.SprintService;
-import com.springboot.MyTodoList.service.TaskService;
 import com.springboot.MyTodoList.util.BotMessages;
 
 @SpringBootApplication
 public class MyTodoListApplication implements CommandLineRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(MyTodoListApplication.class);
-
-    @Autowired
-    private SprintService sprintService;
-
-    @Autowired
-    private TaskService taskService;
-
-    @Autowired
-    private AuthService authService; // Inyectar AuthService
 
     @Value("${telegram.bot.token}")
     private String telegramBotToken;
@@ -47,7 +34,7 @@ public class MyTodoListApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-            telegramBotsApi.registerBot(new ToDoItemBotController(telegramBotToken, botName, sprintService, taskService, authService));
+            telegramBotsApi.registerBot(new ToDoItemBotController(telegramBotToken, botName));
             logger.info(BotMessages.BOT_REGISTERED_STARTED.getMessage());
         } catch (TelegramApiException e) {
             e.printStackTrace();
@@ -59,9 +46,9 @@ public class MyTodoListApplication implements CommandLineRunner {
 class MyTodoListConfiguration {
 
     @Bean
-    public ToDoItemBotController toDoItemBotController(SprintService sprintService, TaskService taskService, AuthService authService) {
+    public ToDoItemBotController toDoItemBotController() {
         String botToken = "your-bot-token"; // Reemplaza con tu token
         String botName = "your-bot-name";   // Reemplaza con tu nombre de bot
-        return new ToDoItemBotController(botToken, botName, sprintService, taskService, authService);
+        return new ToDoItemBotController(botToken, botName);
     }
 }
