@@ -2,33 +2,26 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../Assets/HitosDashboard.css';
 import { UserContext } from '../Contexts/userContext';
-import ModalAgregarNino from './ModalAgregarNino';
-import ModalTodosHitos from './ModalTodosHitos';
+import ModalTodosRegistrosCrecimiento from './ModalTodosRegistrosCrecimiento';
 
-const categorias = [
-  'Desarrollo motor',
-  'Social',
-  'Cognitivo',
-  'Lenguaje'
-];
-
-const HitosDashboard = () => {
+const RegistroCrecimientoDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [children, setChildren] = useState([]);
   const { userId, setUserId } = useContext(UserContext);
-  const [showModal, setShowModal] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
-  const [recentHitos, setRecentHitos] = useState([]);
-  const [showHitosModal, setShowHitosModal] = useState(false);
+  const [recentRegistros, setRecentRegistros] = useState([]);
+  const [showRegistrosModal, setShowRegistrosModal] = useState(false);
 
-  // Estado para el formulario de hito
-  const [hitoForm, setHitoForm] = useState({
-    category: '',
-    description: '',
+
+  // Estado para el formulario de registro de crecimiento
+  const [registroForm, setRegistroForm] = useState({
+    weight: '',
+    height: '',
+    age: '',
     date: ''
   });
-  const [hitoError, setHitoError] = useState('');
+  const [registroError, setRegistroError] = useState('');
 
   useEffect(() => {
     refreshChildren();
@@ -43,17 +36,17 @@ const HitosDashboard = () => {
     } else {
       setUserInfo(null);
     }
-    fetchRecentHitos(); // Siempre recarga el historial al cambiar userId
+    fetchRecentRegistros();
   }, [userId]);
 
-  const fetchRecentHitos = () => {
+  const fetchRecentRegistros = () => {
     if (userId) {
-      fetch(`/hitos/user/${userId}/recent`)
+      fetch(`/registro-crecimiento/user/${userId}/recent`)
         .then(res => res.json())
-        .then(data => setRecentHitos(data))
-        .catch(() => setRecentHitos([]));
+        .then(data => setRecentRegistros(data))
+        .catch(() => setRecentRegistros([]));
     } else {
-      setRecentHitos([]);
+      setRecentRegistros([]);
     }
   };
 
@@ -69,47 +62,56 @@ const HitosDashboard = () => {
     setUserId(selectedId);
   };
 
-  // Handlers para el formulario de hito
-  const handleHitoChange = (e) => {
-    setHitoForm({ ...hitoForm, [e.target.name]: e.target.value });
+  const handleRegistroChange = (e) => {
+    setRegistroForm({ ...registroForm, [e.target.name]: e.target.value });
   };
 
-  const handleHitoSubmit = async (e) => {
+  const handleRegistroSubmit = async (e) => {
     e.preventDefault();
-    setHitoError('');
-    if (!hitoForm.category || !hitoForm.description || !hitoForm.date) {
-      setHitoError('Todos los campos son obligatorios.');
+    setRegistroError('');
+    if (!registroForm.weight || !registroForm.height || !registroForm.date || !registroForm.age) {
+      setRegistroError('Todos los campos son obligatorios.');
       return;
     }
     if (!userId) {
-      setHitoError('Selecciona un niño primero.');
+      setRegistroError('Selecciona un niño primero.');
       return;
     }
     try {
-      const res = await fetch('/hitos', {
+      const res = await fetch('/registro-crecimiento', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...hitoForm,
+          ...registroForm,
           userId
         })
       });
       if (res.ok) {
-        setHitoForm({ category: '', description: '', date: '' });
-        window.alert('¡Hito registrado!');
-        fetchRecentHitos(); // Recarga los hitos recientes
+        setRegistroForm({ weight: '', height: '', age: '', date: '' });
+        window.alert('¡Registro de crecimiento guardado!');
+        fetchRecentRegistros();
+        // Actualiza la info del usuario
+        fetch(`/userchild/${userId}`)
+          .then(res => res.json())
+          .then(data => setUserInfo(data))
+          .catch(() => setUserInfo(null));
       } else {
-        setHitoError('Error al crear el hito.');
+        setRegistroError('Error al crear el registro.');
       }
     } catch {
-      setHitoError('Error de conexión.');
+      setRegistroError('Error de conexión.');
     }
   };
 
-  const handleDeleteHito = async (hitoId) => {
+  const handleDeleteRegistro = async (registroId) => {
     try {
-      await fetch(`/hitos/${hitoId}`, { method: 'DELETE' });
-      fetchRecentHitos(); // Recarga los hitos recientes
+      await fetch(`/registro-crecimiento/${registroId}`, { method: 'DELETE' });
+      fetchRecentRegistros();
+      // Actualiza la info del usuario
+      fetch(`/userchild/${userId}`)
+        .then(res => res.json())
+        .then(data => setUserInfo(data))
+        .catch(() => setUserInfo(null));
     } catch {
       // Puedes mostrar un error si quieres
     }
@@ -129,9 +131,9 @@ const HitosDashboard = () => {
     <div className="dashboard-container">
       <header className="dashboard-header">
         <div className="title-subtitle">
-          <h1 className="title">Juntos en el Desarrollo</h1>
+          <h1 className="title">Registro de Crecimiento</h1>
           <p className="subtitle">
-            Lleva el seguimiento de los Hitos de desarrollo de tu hijo(a).
+            Lleva el seguimiento del peso y la altura de tu hijo(a).
           </p>
         </div>
         <div style={{ display: 'flex', gap: '1rem' }}>
@@ -142,13 +144,13 @@ const HitosDashboard = () => {
             Hitos
           </button>
           <button
-            className="nav-btn"
+            className={`nav-btn${location.pathname === '/registro-crecimiento' ? ' nav-btn-active' : ''}`}
             onClick={() => navigate('/registro-crecimiento')}
           >
             Registro de Crecimiento
           </button>
           <button
-            className="nav-btn"
+            className={`nav-btn${location.pathname === '/graficas-dashboard' ? ' nav-btn-active' : ''}`}
             onClick={() => navigate('/graficas-dashboard')}
           >
             Gráficas de crecimiento
@@ -165,13 +167,7 @@ const HitosDashboard = () => {
             </option>
           ))}
         </select>
-        <button className="btn btn-primary" onClick={() => setShowModal(true)}>Agregar Niño</button>
       </div>
-      <ModalAgregarNino
-        show={showModal}
-        onClose={() => setShowModal(false)}
-        onSuccess={refreshChildren}
-      />
 
       <section className="dashboard-grid">
         <div className="card-2">
@@ -200,82 +196,97 @@ const HitosDashboard = () => {
           </div>
 
           <div className="card">
-            <h3>Hitos del Desarrollo</h3>
-            <form onSubmit={handleHitoSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+            <h3>Agregar Registro de Crecimiento</h3>
+            <form onSubmit={handleRegistroSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
               <label style={{ fontWeight: 500, marginBottom: '0.2rem' }}>
-                Categoría:  
-                <select
-                  className="select-input select-input-small"
-                  name="category"
-                  value={hitoForm.category}
-                  onChange={handleHitoChange}
+                Peso (kg):
+                <input
+                  className="input input-small"
+                  type="number"
+                  name="weight"
+                  value={registroForm.weight}
+                  onChange={handleRegistroChange}
                   required
-                  style={{ maxWidth: '180px', marginTop: '0.3rem' }}
-                >
-                  <option value="">Selecciona</option>
-                  {categorias.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </label>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontWeight: 500, marginBottom: '0.2rem' }}>Descripción:</span>
-                <textarea
-                  className="textarea-input"
-                  name="description"
-                  value={hitoForm.description}
-                  onChange={handleHitoChange}
-                  required
-                  style={{ minWidth: '180px', maxWidth: '100%' }}
+                  min="0"
+                  step="0.01"
+                  style={{ maxWidth: '140px', marginTop: '0.3rem' }}
                 />
-              </div>
-              <label style={{ fontWeight: 500, marginBottom: '0.2rem', maxWidth: '180px' }}>
+              </label>
+              <label style={{ fontWeight: 500, marginBottom: '0.2rem' }}>
+                Altura (cm):
+                <input
+                  className="input input-small"
+                  type="number"
+                  name="height"
+                  value={registroForm.height}
+                  onChange={handleRegistroChange}
+                  required
+                  min="0"
+                  step="1"
+                  style={{ maxWidth: '140px', marginTop: '0.3rem' }}
+                />
+              </label>
+              <label style={{ fontWeight: 500, marginBottom: '0.2rem' }}>
+                Edad (meses):
+                <input
+                  className="input input-small"
+                  type="number"
+                  name="age"
+                  value={registroForm.age}
+                  onChange={handleRegistroChange}
+                  required
+                  min="0"
+                  step="1"
+                  style={{ maxWidth: '140px', marginTop: '0.3rem' }}
+                />
+              </label>
+              <label style={{ fontWeight: 500, marginBottom: '0.2rem' }}>
                 Fecha:
                 <input
                   className="input input-small"
                   type="date"
                   name="date"
-                  value={hitoForm.date}
-                  onChange={handleHitoChange}
+                  value={registroForm.date}
+                  onChange={handleRegistroChange}
                   required
                   style={{ maxWidth: '140px', marginTop: '0.3rem' }}
                 />
               </label>
-              {hitoError && <div className="modal-error">{hitoError}</div>}
-              <button className="btn btn-primary" type="submit">Registrar Hito</button>
+              {registroError && <div className="modal-error">{registroError}</div>}
+              <button className="btn btn-primary" type="submit">Registrar Crecimiento</button>
             </form>
           </div>
         </div>
 
         <div className="large-card">
-          <h3>Historial de Hitos</h3>
+          <h3>Historial de Registros de Crecimiento</h3>
           <ul style={{ listStyle: 'none', padding: 0 }}>
-            {recentHitos.length === 0 && <li>No hay hitos recientes.</li>}
-            {recentHitos.map(hito => (
-              <li key={hito.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.7rem' }}>
+            {recentRegistros.length === 0 && <li>No hay registros recientes.</li>}
+            {recentRegistros.map(registro => (
+              <li key={registro.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.7rem' }}>
                 <div>
-                  <strong>{hito.category}:</strong> {hito.description} <span style={{ color: '#888', fontSize: '0.95em' }}>({hito.date?.slice(0,10)})</span>
+                  <strong>Peso:</strong> {registro.weight} kg, <strong>Altura:</strong> {registro.height} cm, <strong>Edad:</strong> {registro.age} meses <span style={{ color: '#888', fontSize: '0.95em' }}>({registro.date?.slice(0,10)})</span>
                 </div>
                 <button
                   className="btn btn-outline"
                   style={{ marginLeft: '1rem', color: '#e74c3c', borderColor: '#e74c3c' }}
-                  onClick={() => handleDeleteHito(hito.id)}
+                  onClick={() => handleDeleteRegistro(registro.id)}
                 >
                   Borrar
                 </button>
               </li>
             ))}
           </ul>
-          <button className="btn btn-outline" onClick={() => setShowHitosModal(true)}>
-            Ver todos los hitos
+          <button className="btn btn-block" onClick={() => setShowRegistrosModal(true)}>
+            Ver Todos los Registros de Crecimiento
           </button>
-          {showHitosModal && (
-            <ModalTodosHitos onClose={() => setShowHitosModal(false)} />
-          )}
+          {showRegistrosModal && (
+            <ModalTodosRegistrosCrecimiento onClose={() => setShowRegistrosModal(false)} />
+)}
         </div>
       </section>
     </div>
   );
 };
 
-export default HitosDashboard;
+export default RegistroCrecimientoDashboard;

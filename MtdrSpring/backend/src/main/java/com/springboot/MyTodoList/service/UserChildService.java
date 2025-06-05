@@ -35,11 +35,12 @@ public class UserChildService {
         .collect(Collectors.toList());
     }
 
-    public UserChild updateWeightAndHeight(int id, Float weight, int height) {
+    public UserChild updateChildInfo(int id, Float weight, int height, int age) {
     UserChild user = userChildRepository.findById(id).orElse(null);
     if (user != null) {
         user.setWeight(weight);
         user.setHeight(height);
+        user.setAge(age);
         return userChildRepository.save(user);
     }
     return null;

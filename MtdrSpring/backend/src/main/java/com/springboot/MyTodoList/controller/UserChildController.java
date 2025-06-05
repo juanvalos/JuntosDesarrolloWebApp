@@ -51,8 +51,8 @@ public class UserChildController {
     }
 
     @PatchMapping("/userchild/{id}/update-physical")
-    public ResponseEntity<UserChild> updateWeightAndHeight(@PathVariable int id, @RequestParam Float weight, @RequestParam Integer height) {
-        UserChild updated = userChildService.updateWeightAndHeight(id, weight, height);
+    public ResponseEntity<UserChild> updateChildInfo(@PathVariable int id, @RequestParam Float weight, @RequestParam Integer height,  @RequestParam Integer age) {
+        UserChild updated = userChildService.updateChildInfo(id, weight, height, age);
         if (updated != null) {
             return ResponseEntity.ok(updated);
         } else {

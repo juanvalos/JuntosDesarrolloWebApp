@@ -20,17 +20,20 @@ public class RegistroCrecimiento {
     private Float weight;
 
     @Column(name = "height", nullable = false)
-    private Float height;
+    private int height;
 
     @Column (name = "fecha")
     private Date date;
+
+    @Column(name = "age")
+    private int age;
 
     @Column(name = "user_id", nullable = false)
     private int userId;
 
     public RegistroCrecimiento() {}
 
-    public RegistroCrecimiento(Float weight, Float height, Date date, int userId) {
+    public RegistroCrecimiento(Float weight, int height, Date date, int userId) {
         this.weight = weight;
         this.height = height;
         this.date = date;
@@ -56,11 +59,11 @@ public class RegistroCrecimiento {
         this.weight = weight;
     }
 
-    public Float getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(Float height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -78,5 +81,13 @@ public class RegistroCrecimiento {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

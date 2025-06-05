@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.MyTodoList.model.RegistroCrecimiento;
 import com.springboot.MyTodoList.service.RegistroCrecimientoService;
+import com.springboot.MyTodoList.service.UserChildService;
 
 @RestController
 @RequestMapping("/registro-crecimiento")
@@ -21,9 +22,19 @@ public class RegistroCrecimientoController {
     @Autowired
     private RegistroCrecimientoService registroCrecimientoService;
 
+    @Autowired
+    private  UserChildService userChildService;
+
     @PostMapping
     public RegistroCrecimiento createRegistroCrecimiento(@RequestBody RegistroCrecimiento registroCrecimiento) {
-        return registroCrecimientoService.createRegistroCrecimiento(registroCrecimiento);
+        RegistroCrecimiento nuevo = registroCrecimientoService.createRegistroCrecimiento(registroCrecimiento);
+        userChildService.updateChildInfo(
+            registroCrecimiento.getUserId(),
+            registroCrecimiento.getWeight(),
+            registroCrecimiento.getHeight(),
+            registroCrecimiento.getAge()
+        );
+        return nuevo;
     }
 
     @DeleteMapping("/{id}")

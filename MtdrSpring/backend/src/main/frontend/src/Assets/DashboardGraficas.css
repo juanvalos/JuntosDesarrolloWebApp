@@ -1,0 +1,56 @@
+/* Centra las dos cards de gráficas */
+.charts-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin: 2rem 0 0 0;
+}
+
+/* Card de gráfica */
+.chart-card {
+  background: #FFFFFF;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+  max-width: 90vw;
+  height: 420px;
+  justify-content: space-between;
+}
+
+.chart-img {
+  width: 100%;
+  max-width: 260px;
+  height: 260px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.chart-btn {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* Responsive para móviles */
+@media (max-width: 900px) {
+  .charts-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .chart-card {
+    width: 95vw;
+    max-width: 400px;
+    height: auto;
+  }
+  .chart-img {
+    max-width: 90vw;
+    height: auto;
+  }
+}
