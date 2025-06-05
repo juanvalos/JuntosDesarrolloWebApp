@@ -6,6 +6,7 @@ metadata:
     oci.oraclecloud.com/loadbalancer-policy: "IP_HASH"
 spec:
   type: LoadBalancer
+  loadBalancerIP: 160.34.212.86
   externalTrafficPolicy: Local
 
   ports:

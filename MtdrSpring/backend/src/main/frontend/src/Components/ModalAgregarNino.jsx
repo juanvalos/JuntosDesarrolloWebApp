@@ -8,7 +8,7 @@ const ModalAgregarNino = ({ show, onClose, onSuccess }) => {
     weight: '',
     height: '',
     age: '',
-    birth_date: ''
+    dateOfBirth: ''
   });
   const [error, setError] = useState('');
 
@@ -22,7 +22,7 @@ const ModalAgregarNino = ({ show, onClose, onSuccess }) => {
     e.preventDefault();
     setError('');
     // Validación simple
-    if (!form.name || !form.gender || !form.birth_date) {
+    if (!form.name || !form.gender || !form.dateOfBirth) {
       setError('Por favor llena todos los campos obligatorios.');
       return;
     }
@@ -38,7 +38,7 @@ const ModalAgregarNino = ({ show, onClose, onSuccess }) => {
         })
       });
       if (res.ok) {
-        setForm({ name: '', gender: '', weight: '', height: '', age: '', birth_date: '' });
+        setForm({ name: '', gender: '', weight: '', height: '', age: '', dateOfBirth: '' });
         onSuccess && onSuccess();
         onClose();
       } else {
@@ -75,7 +75,7 @@ const ModalAgregarNino = ({ show, onClose, onSuccess }) => {
             <input type="number" name="age" value={form.age} onChange={handleChange} />
           </label>
           <label>Fecha de nacimiento*:
-            <input type="date" name="birth_date" value={form.birth_date} onChange={handleChange} required />
+            <input type="date" name="dateOfBirth" value={form.dateOfBirth} onChange={handleChange} required />
           </label>
           {error && <div className="modal-error">{error}</div>}
           <div className="modal-actions">
