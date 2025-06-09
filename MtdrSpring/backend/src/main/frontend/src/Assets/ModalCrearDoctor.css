@@ -1,0 +1,101 @@
+.modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-crear-doctor-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  min-width: 350px;
+  max-width: 95vw;
+  max-height: 60vh; /* Cambiado de 90vh a 60vh */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-title {
+  color: #28BDB1;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+}
+
+.modal-crear-doctor-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.modal-crear-doctor-form label {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-crear-doctor-form input {
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  background: #f8fafc;
+  color: #374151;
+  transition: border 0.2s;
+}
+
+.modal-crear-doctor-form input:focus {
+  border: 1.5px solid #28BDB1;
+  outline: none;
+  background: #fff;
+}
+
+.btn.btn-primary {
+  background: #28BDB1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.7rem;
+}
+
+.btn.btn-primary:disabled {
+  background: #b2dfdb;
+  cursor: not-allowed;
+}
+
+.btn.btn-primary:hover:not(:disabled) {
+  background: #1fa59b;
+}
+
+.modal-error {
+  color: #e74c3c;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.2rem;
+}

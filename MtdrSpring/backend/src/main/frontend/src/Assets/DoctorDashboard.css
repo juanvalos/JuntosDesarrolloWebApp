@@ -1,0 +1,299 @@
+.doctor-dashboard-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #FBFBF9;
+}
+
+.doctor-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+}
+
+.doctor-title-subtitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #28BDB1;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.doctor-subtitle {
+  font-size: 1.15rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.btn-logout {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.4rem;
+  margin-left: 2rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.07);
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+  box-shadow: 0 4px 16px rgba(231,76,60,0.13);
+}
+
+.doctor-profile-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+  align-self: flex-end;
+  margin-right: 2rem;
+}
+
+.doctor-profile-select {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  max-width: 300px;
+  color: #7b8c9d;
+}
+
+.doctor-dashboard-grid {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.doctor-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 3px 15px rgba(40,189,177,0.08);
+  max-width: 350px;
+  min-width: 320px;
+  min-height: 220px;
+  padding: 2.2rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+}
+
+.doctor-card2 {
+  background: #FFFFFF;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 450px;
+  height: 320px;
+  align-self: center;
+}
+
+.doctor-card h3 {
+  color: #28BDB1;
+  margin-bottom: 1.2rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.doctor-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #374151;
+  font-size: 1.08rem;
+}
+
+.doctor-info-list li {
+  margin-bottom: 0.6rem;
+}
+
+.doctor-form label {
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.doctor-form input,
+.doctor-form select,
+.doctor-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  background: #f8fafc;
+  color: #374151;
+  transition: border 0.2s;
+}
+
+.doctor-form textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.doctor-form input:focus,
+.doctor-form select:focus,
+.doctor-form textarea:focus {
+  border: 1.5px solid #28BDB1;
+  outline: none;
+  background: #fff;
+}
+
+.doctor-form .doctor-btn-primary {
+  background: #28BDB1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.doctor-form .doctor-btn-primary:hover {
+  background: #1fa59b;
+}
+
+.doctor-notes-section {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 3px 15px rgba(40,189,177,0.08);
+  padding: 1.5rem 2rem;
+}
+
+.doctor-notes-section h3 {
+  color: #28BDB1;
+  margin-bottom: 1.2rem;
+}
+
+.doctor-notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.doctor-notes-list li {
+  margin-bottom: 0.7rem;
+  color: #374151;
+  font-size: 1.08rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doctor-notes-list .note-title {
+  font-weight: bold;
+  color: #111827;
+}
+
+.doctor-notes-list .note-date {
+  color: #888;
+  font-size: 0.98em;
+  margin-left: 1.2rem;
+}
+
+.doctor-btn-outline {
+  background: #f4f4f4;
+  border: none;
+  border-radius: 8px;
+  color: #28BDB1;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.doctor-card2 h3 {
+  margin: 0 0 0.5rem 0;
+  color: #111827;
+  font-size: 1.2rem;
+}
+
+.doctor-card2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.doctor-card2 ul li {
+  margin-bottom: 0.4rem;
+  color: #374151;
+  font-size: 1.15rem; /* Aumenta el tamaño de la letra */
+}
+
+.doctor-card2 ul li strong {
+  font-size: 1.1rem; /* Opcional: resalta el texto en negrita */
+}
+
+.doctor-btn-outline:hover {
+  background: #e0e0e0;
+}
+
+.doctor-modal-error {
+  color: #e74c3c;
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .doctor-dashboard-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .doctor-card {
+    width: 90vw;
+    min-width: unset;
+    max-width: 98vw;
+  }
+  .doctor-notes-section {
+    padding: 1rem;
+  }
+}
+
+/* Puedes agregar esto al final de tu DoctorDashboard.css */
+
+.doctor-card.medica-compacta {
+  max-width: 270px;
+  min-width: 200px;
+  padding: 1.1rem 1rem 1rem 1rem;
+}
+
+.doctor-form.medica-compacta label {
+  font-size: 0.97rem;
+  margin-bottom: 0.1rem;
+}
+
+.doctor-form.medica-compacta input,
+.doctor-form.medica-compacta select,
+.doctor-form.medica-compacta textarea {
+  font-size: 0.97rem;
+  padding: 0.35rem 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.doctor-form.medica-compacta .doctor-btn-primary {
+  font-size: 0.97rem;
+  padding: 0.5rem 1rem;
+}

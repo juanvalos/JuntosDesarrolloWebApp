@@ -58,7 +58,8 @@ html, body {
   margin-bottom: 0.5rem;
   align-items: center;
   align-self: flex-end;       /* Empuja hacia la derecha */
-  margin-right: 2rem;         /* Margen de separación del borde derecho */
+  margin-right: 2rem;  
+  justify-content: center;       /* Margen de separación del borde derecho */
 }
 
 .profile-select {
@@ -284,6 +285,26 @@ html, body {
   text-decoration: underline;
   text-underline-offset: 4px;
   font-weight: bold;
+}
+
+/* Botón de cerrar sesión personalizado */
+.btn-logout {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1.4rem;
+  margin-left: 2rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.07);
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+  box-shadow: 0 4px 16px rgba(231,76,60,0.13);
 }
 
 /* Responsive design */

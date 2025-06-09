@@ -115,6 +115,11 @@ const HitosDashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    setUserId(null);
+    navigate('/');
+  };
+
   function formatDate(dateString) {
     if (!dateString) return '-';
     const date = new Date(dateString);
@@ -134,10 +139,10 @@ const HitosDashboard = () => {
             Lleva el seguimiento de los Hitos de desarrollo de tu hijo(a).
           </p>
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <button
-            className={`nav-btn${location.pathname === '/' ? ' nav-btn-active' : ''}`}
-            onClick={() => navigate('/')}
+            className={`nav-btn${location.pathname === '/hitosDashboard' ? ' nav-btn-active' : ''}`}
+            onClick={() => navigate('/hitosDashboard')}
           >
             Hitos
           </button>
@@ -152,6 +157,17 @@ const HitosDashboard = () => {
             onClick={() => navigate('/graficas-dashboard')}
           >
             Gráficas de crecimiento
+          </button>
+
+          <button
+            className="nav-btn"
+            onClick={() => navigate('/notas-medicas')}
+          >
+            Notas Médicas
+          </button>
+          <button
+            className="btn-logout" onClick={handleLogout}>
+            Cerrar sesión
           </button>
         </div>
       </header>

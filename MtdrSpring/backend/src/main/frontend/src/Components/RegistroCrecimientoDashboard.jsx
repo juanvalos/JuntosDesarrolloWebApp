@@ -127,6 +127,11 @@ const RegistroCrecimientoDashboard = () => {
     return `${day}/${month}/${year}`;
   }
 
+  const handleLogout = () => {
+    setUserId(null);
+    navigate('/');
+  };
+
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
@@ -138,8 +143,8 @@ const RegistroCrecimientoDashboard = () => {
         </div>
         <div style={{ display: 'flex', gap: '1rem' }}>
           <button
-            className={`nav-btn${location.pathname === '/' ? ' nav-btn-active' : ''}`}
-            onClick={() => navigate('/')}
+            className={`nav-btn${location.pathname === '/hitosDashboard' ? ' nav-btn-active' : ''}`}
+            onClick={() => navigate('/hitosDashboard')}
           >
             Hitos
           </button>
@@ -154,6 +159,17 @@ const RegistroCrecimientoDashboard = () => {
             onClick={() => navigate('/graficas-dashboard')}
           >
             Gráficas de crecimiento
+          </button>
+          <button
+            className="nav-btn"
+            onClick={() => navigate('/notas-medicas')}
+          >
+            Notas Médicas
+          </button>
+
+          <button
+            className="btn-logout" onClick={handleLogout}>
+            Cerrar sesión
           </button>
         </div>
       </header>
