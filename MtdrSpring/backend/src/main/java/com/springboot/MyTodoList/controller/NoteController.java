@@ -47,7 +47,7 @@ public class NoteController {
         return noteService.getNotesByChildId(childId);
     }
     
-    @GetMapping("/chiild/recent/{childId}")
+    @GetMapping("/child/recent/{childId}")
     public List<Note> getTop3RecentNotesByChildId(@PathVariable int childId) {
         return noteService.getTop3RecentNotesByChildId(childId);
     }

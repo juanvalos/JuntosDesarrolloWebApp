@@ -6,6 +6,7 @@ import RegistroCrecimientoDashboard from './Components/RegistroCrecimientoDashbo
 import DashboardGraficas from './Components/DashboardGraficas';
 import InicioSeleccionRol from './Components/InicioSeleccionRol';
 import DoctorDashboard from './Components/DoctorDashboard';
+import DashboardNotas from './Components/DashboardNotas';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path='/registro-crecimiento' element={<RegistroCrecimientoDashboard/>} />
                 <Route path='/graficas-dashboard' element={<DashboardGraficas/>} />
                 <Route path='/doctor-dashboard' element={<DoctorDashboard/>} />
+                <Route path='/notas-medicas' element={<DashboardNotas/>} />
             </Routes>
         </Router>
     );
