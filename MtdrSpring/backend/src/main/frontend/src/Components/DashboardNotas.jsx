@@ -3,7 +3,7 @@ import { useNavigate, useLocation} from 'react-router-dom';
 import '../Assets/DashboardNotas.css';
 import { UserContext } from '../Contexts/userContext';
 import ModalAgregarNino from './ModalAgregarNino';
-import ModalTodasNotas from './ModalTodasNotas';
+import ModalTodasNotasChild from './ModalTodasNotasChild'; // Importa el modal para ver todas las notas
 
 const DashboardNotas = () => {
   const navigate = useNavigate();
@@ -173,9 +173,7 @@ const DashboardNotas = () => {
             Ver todas las notas
           </button>
           {showNotasModal && (
-            <ModalTodasNotas
-              doctorId={null}
-              childId={userId}
+            <ModalTodasNotasChild
               onClose={() => setShowNotasModal(false)}
             />
           )}
